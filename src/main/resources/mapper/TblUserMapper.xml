@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.qingmings.mybatis.mapper.TblUserMapper">
+  <resultMap id="BaseResultMap" type="cn.qingmings.mybatis.model.TblUser">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `name`, gender, address
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from tbl_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="cn.qingmings.mybatis.model.TblUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_user (`name`, gender, address
+      )
+    values (#{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="cn.qingmings.mybatis.model.TblUser" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.qingmings.mybatis.model.TblUser">
+    <!--@mbg.generated-->
+    update tbl_user
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.qingmings.mybatis.model.TblUser">
+    <!--@mbg.generated-->
+    update tbl_user
+    set `name` = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <sql id="Join_Column_List">
+    <!--@mbg.generated-->
+    tbl_user.id as tbl_user_id,
+    tbl_user.name as tbl_user_name,
+    tbl_user.gender as tbl_user_gender,
+    tbl_user.address as tbl_user_address
+  </sql>
+  <resultMap id="JoinResultMap" type="cn.qingmings.mybatis.model.TblUser">
+    <!--@mbg.generated-->
+    <id column="tbl_user_id" property="id"/>
+    <result column="tbl_user_name" property="name"/>
+    <result column="tbl_user_gender" property="gender"/>
+    <result column="tbl_user_address" property="address"/>
+  </resultMap>
+</mapper>
